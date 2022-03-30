@@ -1,12 +1,14 @@
+import configparser
 import os
 import time
-import MS-BIOS
+
+import MS_BIOS
+
 
 def main():
-    bios = MS-BIOS.BIOS()
+    bios = MS_BIOS.BIOS()
+    if bios.appdataRoute_if:
+        bios.selfInspection()
 
 if __name__ == "__main__":
     main()
-
-
-
