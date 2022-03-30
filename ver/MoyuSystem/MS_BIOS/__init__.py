@@ -1,5 +1,4 @@
 import configparser
-from distutils.log import info
 import os
 import time
 
