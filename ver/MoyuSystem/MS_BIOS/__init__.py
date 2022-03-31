@@ -5,6 +5,7 @@ import time
 
 class BIOS():
     def __init__(self):
+        #初始化ms_bios的数据
         self.appdataRoute = os.getenv('appdata')
         file = self.appdataRoute + '\\ms'
         if not os.path.isdir(file):
@@ -20,10 +21,10 @@ class BIOS():
         initFile = self.appdataRoute + "\\init.ini"
         if not os.path.os.path.isfile(initFile):
             with open(initFile, 'w') as file_init:
-                inof = 'test'
+                inof = '#test'
                 file_init.write(inof)
+            self.init()
 
-            return False
         else:
             init_ini = configparser.ConfigParser()
             init_ini.read(initFile)
