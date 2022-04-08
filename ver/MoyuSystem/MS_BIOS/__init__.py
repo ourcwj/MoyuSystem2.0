@@ -6,28 +6,58 @@ import time
 class BIOS():
     def __init__(self):
         #初始化ms_bios的数据
+        self.tmp_fils = ['readme.txt']
         self.appdataRoute = os.getenv('appdata')     # 获得appdata绝对的路径
         file = self.appdataRoute + '\\ms'  # 设置ms的路径
         if not os.path.isdir(file):   # 判断路径是否存在
             # 不存在，创建路径 并把appdataRoute_if设置为“否”
             os.makedirs(file)
             self.appdataRoute_if = False
+            # print('if', self.appdataRoute_if)
         else:
             # 存在把appdataRoute_if设置为“是” 并把路径设置为ms路径
             self.appdataRoute_if = True
-            self.appdataRoute = file
+            self.appdataRoute = file+'\\'
+            # print(self.appdataRoute)
 
     def init(self):
         # MS初始化函数
-        pass
-    
+        fils = {}
+
+        def addFils():
+            for i in self.tmp_fils:
+                # 分离路径，文件名称及后缀。并把绝对路径添加至fils字典
+                tmp = self.appdataRoute+i
+                (route, fileName) = os.path.split(tmp)
+                # print('file name:', fileName)
+                (name, suffix) = os.path.splitext(fileName)
+                # print('name:', name)
+
+                fils['%s' % (name)] = tmp
+            # print(fils)
+
+        def write():
+            with open(fils['readme'], 'w') as tmp:
+                tmp.write('写入测试')
+
+
+        addFils()
+        write()
+
     def selfInspection(self):
         # 自检函数
-        fils_tmp = ['init.ini']  # 要检查的文件
+
+        if not self.appdataRoute_if:
+            # 直接检擦路径是否存在
+            return False
+            
+
         fils = []
-        for i in fils_tmp:
+
+        for i in self.tmp_fils:
             # 建立将要检擦的文件的绝对路径
-            fils.append(self.appdataRoute+"\\%s" % (i))
+            fils.append(self.appdataRoute+ "%s" % (i))
+        # print(fils)
         tmp = True
         for i in fils:
             # 检擦文件
