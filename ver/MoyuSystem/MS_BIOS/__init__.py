@@ -12,6 +12,7 @@ class BIOS():
         if not os.path.isdir(file):   # 判断路径是否存在
             # 不存在，创建路径 并把appdataRoute_if设置为“否”
             os.makedirs(file)
+            self.appdataRoute = file+'\\'
             self.appdataRoute_if = False
             # print('if', self.appdataRoute_if)
         else:
@@ -28,13 +29,14 @@ class BIOS():
             for i in self.tmp_fils:
                 # 分离路径，文件名称及后缀。并把绝对路径添加至fils字典
                 tmp = self.appdataRoute+i
+                print('tmp:', tmp)
                 (route, fileName) = os.path.split(tmp)
-                # print('file name:', fileName)
+                print('file name:', fileName)
                 (name, suffix) = os.path.splitext(fileName)
-                # print('name:', name)
+                print('name:', name)
 
                 fils['%s' % (name)] = tmp
-            # print(fils)
+            print(fils)
 
         def write():
             with open(fils['readme'], 'w') as tmp:
