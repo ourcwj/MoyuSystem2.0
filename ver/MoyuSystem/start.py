@@ -1,3 +1,7 @@
+# -- UTF-8 --
+# date: 2022年4月9日
+# made by: ourcwj
+
 import configparser
 import os
 import time

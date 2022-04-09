@@ -18,6 +18,8 @@ class BIOS():
         # 然后在这个字典内添加文件名（没有后缀）和文件内容
         self.content_fils = {'readme' : '写入测试', 
                              'test' : 'test\nthe another test'}
+
+
         self.appdataRoute = os.getenv('appdata')     # 获得appdata绝对的路径
         file = self.appdataRoute + '\\ms'  # 设置ms的路径
         if not os.path.isdir(file):   # 判断路径是否存在
