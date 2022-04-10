@@ -7,7 +7,7 @@
 import configparser
 import os
 import time
-
+from MS_BIOS import PID
 
 class BIOS():
     def __init__(self):
@@ -108,3 +108,16 @@ class BIOS():
         #     init_ini.read(initFile)
         #     self.initState = init_ini.get('inof', 'edition')
         '''
+
+    def pid_inspect(self, file_custom = None, inspect = True, pid_custom = 0):
+        if file_custom is None:
+            self.pid = PID.pid_tools(self.appdataRoute)
+        else:
+            self.pid = PID.pid_tools(self.appdataRoute, fileName=file_custom)
+
+        if inspect:
+            if pid_custom == 0:
+                return self.pid.pid_if()
+            else:
+                return self.pid.pid_if(pid=pid_custom)
+
