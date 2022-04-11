@@ -16,10 +16,15 @@ class BIOS():
         #初始化ms_bios的数据
         print('MS_BIOS已载入')
         # 如果要加入配置文件则在此列表中添加文件（有文件后缀）
-        self.wirte_fils = ['readme.txt', 'test.txt']
+        self.wirte_fils = ['readme.txt', 
+                           'test.txt', 
+                           'test01.txt', 
+                           'test02.txt']
         # 然后在这个字典内添加文件名（没有后缀）和文件内容
         self.content_fils = {'readme' : '写入测试', 
-                             'test' : 'test\nthe another test'}
+                             'test' : 'test\n这是另一行字符', 
+                             'test01' : 'test01', 
+                             'test02' : 'test02'}
 
 
         self.appdataRoute = os.getenv('appdata')     # 获得appdata绝对的路径

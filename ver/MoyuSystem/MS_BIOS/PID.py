@@ -8,7 +8,7 @@ from psutil import pid_exists
 
 
 class pid_tools():
-    def __init__(self, route, fileName = 'ms_pid.ms') -> None:
+    def __init__(self, route, fileName = 'ms_pid.ms.pid') -> None:
         # 初始化PID工具
         print('PID工具已载入')
         self.route = route+fileName # 获得文件路径
