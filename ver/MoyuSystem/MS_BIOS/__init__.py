@@ -4,10 +4,12 @@
 
 # 注意这里所有的 print 函数均是为了开发调试需要，可以删除（特殊备注除外）
 
-import configparser
+# import configparser
 import os
-import time
+
+# import time
 from MS_BIOS import PID
+
 
 class BIOS():
     def __init__(self):
@@ -110,10 +112,10 @@ class BIOS():
         '''
 
     def pid_inspect(self, file_route = None, file_custom = None, inspect_if = True, pid_custom = 0):
-        # 代码块暂未生效
 
         # 判断各种使用可选参数的情况，以加以使用不同的运行方案
         if file_custom is None:
+            # 判断是否使用了file_custom可选参数
             self.pid = PID.pid_tools(self.appdataRoute)
         elif file_route == None:
             self.pid = PID.pid_tools(self.appdataRoute, fileName=file_custom)
@@ -121,7 +123,7 @@ class BIOS():
             self.pid = PID.pid_tools(file_route, fileName=file_custom)
 
         if inspect_if:
-            if pid_custom == 0:
+            if pid_custom == 0: # 判断是否使用了pid_custom可选参数
                 return self.pid.pid_if()
             else:
                 return self.pid.pid_if(pid=pid_custom)

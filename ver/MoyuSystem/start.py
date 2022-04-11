@@ -2,10 +2,10 @@
 # date: 2022年4月9日
 # made by: ourcwj
 
-import configparser
-import os
-import time
+# import configparser
+# import os
 import sys
+import time
 
 import MS_BIOS
 
