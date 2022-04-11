@@ -99,22 +99,6 @@ class BIOS():
         return tmp
 
 
-        '''
-        # 以下代码已废弃
-
-
-        # initFile = self.appdataRoute + "\\init.ini"
-        # if not os.path.os.path.isfile(initFile):
-        #     with open(initFile, 'w') as file_init:
-        #         inof = '#test'
-        #         file_init.write(inof)
-        #     self.init()
-
-        # else:
-        #     init_ini = configparser.ConfigParser()
-        #     init_ini.read(initFile)
-        #     self.initState = init_ini.get('inof', 'edition')
-        '''
 
     def pid_inspect(self, file_route = None, file_custom = None, inspect_if = True, pid_custom = 0):
 
