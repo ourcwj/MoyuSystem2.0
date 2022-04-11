@@ -7,17 +7,30 @@ import os
 
 class pid_tools():
     def __init__(self, route, fileName = 'ms_pid.ms') -> None:
+        print('PID工具已载入')
         self.route = route+fileName
+        # print('12345689')
         self.pid = os.getpid()
+        # print(self.pid)
 
     def new_pid(self):
-        try:
-            with open(self.route, 'w') as i:
-                i.write(self.pid)
-            return 0
 
-        except:
-            return 1
+
+        if not os.path.isfile(self.route):
+            with open(self.route, mode='x')as i:
+                i.write('%d'%(self.pid))
+        else:
+            os.remove(self.route)
+            with open(self.route, mode='x')as i:
+                i.write('%d'%(self.pid))
+        # with open(self.route, mode='w+') as i:
+        #     print('new_pid:', self.pid)
+        #     i.write('why%d'%(self.pid))
+        #     i.close()
+        # with open(self.route, mode='w+') as i:
+        #     print('777', i.read())
+
+
 
     def pid_if(self, pid = 0):
 
@@ -27,7 +40,8 @@ class pid_tools():
             else:
                 with open(self.route) as i:
                     tmp = i.read()
-                    if pid_exists(tmp):
+                    
+                    if pid_exists(int(tmp)):
                         return True
                     else:
                         return False

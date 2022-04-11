@@ -12,7 +12,7 @@ from MS_BIOS import PID
 class BIOS():
     def __init__(self):
         #初始化ms_bios的数据
-
+        print('MS_BIOS已载入')
         # 如果要加入配置文件则在此列表中添加文件（有文件后缀）
         self.wirte_fils = ['readme.txt', 'test.txt']
         # 然后在这个字典内添加文件名（没有后缀）和文件内容
@@ -43,14 +43,14 @@ class BIOS():
             for i in self.wirte_fils:
                 # 分离路径，文件名称及后缀。并把绝对路径添加至fils字典, 将文件名（key）加入fileName_key列表
                 tmp = self.appdataRoute+i
-                print('tmp:', tmp)
+                # print('tmp:', tmp)
                 (route, fileName) = os.path.split(tmp)
-                print('file name:', fileName)
+                # print('file name:', fileName)
                 (name, suffix) = os.path.splitext(fileName)
-                print('name:', name)
+                # print('name:', name)
                 fileName_key.append(name)
                 fils['%s' % (name)] = tmp
-            print(fils)
+            # print(fils)
 
         def write():
             # 数据写入函数
@@ -109,13 +109,18 @@ class BIOS():
         #     self.initState = init_ini.get('inof', 'edition')
         '''
 
-    def pid_inspect(self, file_custom = None, inspect = True, pid_custom = 0):
+    def pid_inspect(self, file_route = None, file_custom = None, inspect_if = True, pid_custom = 0):
+        # 代码块暂未生效
+
+        # 判断各种使用可选参数的情况，以加以使用不同的运行方案
         if file_custom is None:
             self.pid = PID.pid_tools(self.appdataRoute)
-        else:
+        elif file_route == None:
             self.pid = PID.pid_tools(self.appdataRoute, fileName=file_custom)
+        else:
+            self.pid = PID.pid_tools(file_route, fileName=file_custom)
 
-        if inspect:
+        if inspect_if:
             if pid_custom == 0:
                 return self.pid.pid_if()
             else:
