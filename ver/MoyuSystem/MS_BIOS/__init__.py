@@ -6,7 +6,7 @@
 
 # import configparser
 import os
-
+import logging
 # import time
 from MS_BIOS import PID
 
@@ -14,6 +14,7 @@ from MS_BIOS import PID
 class BIOS():
     def __init__(self):
         #初始化ms_bios的数据
+        self.logger = logging.getLogger('MS_logging')
         print('MS_BIOS已载入')
         # 如果要加入配置文件则在此列表中添加文件（有文件后缀）
         self.wirte_fils = ['readme.txt', 
