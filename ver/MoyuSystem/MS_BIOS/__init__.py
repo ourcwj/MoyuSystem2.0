@@ -7,9 +7,9 @@
 # import configparser
 import os
 import logging
+import sys
 # import time
 from MS_BIOS import PID
-
 
 class BIOS():
     def __init__(self):

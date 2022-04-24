@@ -8,16 +8,17 @@ import sys
 import time
 import logging
 import MS_BIOS
+from MS_BIOS import execute
+from MS_BIOS import GUI
 
+bios = MS_BIOS.BIOS()
 
-
+def exit(code = 0):
+    bios.pid.delete_pidFile()
+    sys.exit(code)
 
 def main():
-    bios = MS_BIOS.BIOS()
-
-
-
-
+    
     if not bios.selfInspection():
         print('未通过自检,准备初始化...')
         bios.init()
@@ -48,8 +49,11 @@ def main():
         
     else:
         bios.pid.new_pid()
-    while True:
-        print('PID检查通过')
-        time.sleep(123456)
+
+    print('PID检查通过')
+    gui = GUI.GUI()
+    gui.windows()
+    exit()
+    
 if __name__ == "__main__":
     main()
