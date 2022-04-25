@@ -51,8 +51,8 @@ def main():
         bios.pid.new_pid()
 
     print('PID检查通过')
-    gui = GUI.GUI()
-    gui.windows()
+    GUI.startgui(bios.appdataRoute)
+    
     exit()
     
 if __name__ == "__main__":
