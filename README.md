@@ -1,5 +1,8 @@
 # MoyuSystem2.0
 
+老师我写好了，可以直接下载源码上交，但是要下载第三方库，
+建议下载我封装好的
+
 bilibili的个人主页:
 https://space.bilibili.com/1797314399
 
