@@ -12,45 +12,43 @@ def add():
     pass
 
 def readFile(filename):
-    rou = os.getenv('temp') + '\\ms\\'
-    if not os.path.isdir(rou):
-        os.makedirs(rou)
     tmp = {}
     test = configobj.ConfigObj(filename, encoding='UTF-8')
     tmp['name'] = test['name']['name']
-    tmp_rou = rou + test['data']['photoname']
-    if os.path.isfile(tmp_rou):
-        os.remove(tmp_rou)
-    with open(tmp_rou, mode='wb') as t:
-        t.write(str.encode(test['data']['dataP']))
-    # tmp['photo'] = test['data']['dataP']
-    tmp['photo'] = tmp_rou
     tmp['answer'] = test['data']['dataA']
+    tmp['photo'] = test['data']['photo']
     return tmp
     
-def weitefile(route, name, dataP, dataA):
-    datapdata = ''
-    datapdata = bytes(datapdata, encoding='UTF-8')
-    for line in open(dataP, mode='rb'):
-        datapdata = datapdata + line
-    tmp = {
-        'name' : name, 
-        'dataphoto' : datapdata, 
-        'dataAn' : dataA
-    }
-
+def weitefile(route, name, dataP, answer):
+    (tmp_123, fileName) = os.path.split(dataP)
+    (name_file, suffix) = os.path.splitext(fileName)
     file = route + '\\' + name + '.msdata'
     if not os.path.isfile(file):
         with open(file, mode='w', encoding='UTF-8') as t:
             t.close()
     else:
         return False
+    datapdata = b''
     test = configobj.ConfigObj(file, encoding='UTF-8')
-    (tmp_123, fileName) = os.path.split(dataP)
     test['name'] = {}
     test['data'] = {}
+    photo = route + '\\' + name + suffix
+    with open(dataP, mode='rb')as t:
+        with open(photo, mode='wb')as w:
+            while 1:
+                data_tmp = t.read(1024)
+                if not len(data_tmp):
+                    break
+                print(data_tmp)
+                w.write(data_tmp)
+
+    tmp = {
+        'name' : name, 
+        'dataphoto' : photo, 
+        'dataAn' : answer
+    }
+    
     test['name']['name'] = tmp['name']
-    test['data']['dataP'] = tmp['dataphoto']
     test['data']['dataA'] = tmp['dataAn']
-    test['data']['photoname'] = fileName
+    test['data']['photo'] = tmp['dataphoto']
     test.write()
