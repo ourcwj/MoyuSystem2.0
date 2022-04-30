@@ -5,12 +5,87 @@
 import os
 import sys
 import time
-import MS_BIOS as BIOS
+from MyQR import myqr
 import configobj
 
-def add():
-    pass
+import MS_BIOS as BIOS
 
+
+def qrcode(di):
+    tmp = {}
+    tmp['name'] = time.strftime('%Y-%M %H-%M-%S') + '.png'
+    tmp['str'] = di['str']
+    tmp['rou'] = di['rou']
+    if di['len_if']:
+        tmp['len'] = di['len']
+    else:
+        tmp['len'] = 5
+    if di['isPhoto']:
+        if os.path.isfile(di['rou_photo']):
+            tmp['rou_photo'] = di['rou_photo']
+        else:
+            return False
+
+        tmp['isCS'] = di['isCS']
+    else:
+        tmp['rou_photo'] = 'hknifucnhnhnhnhgivtestrg741758714bbbrgts51'
+    
+    try:
+        if not os.path.isdir(tmp['rou']):
+            os.makedirs(tmp['rou'])
+
+    except BaseException as t:
+        print(t)
+        return False
+
+    try:
+        if tmp['rou_photo'] == 'hknifucnhnhnhnhgivtestrg741758714bbbrgts51':
+            myqr.run(
+                words = tmp['str'], 
+                version=tmp['len'], 
+                level='L', 
+                save_dir=tmp['rou'], 
+                save_name=tmp['name']
+            )
+            return True
+        else:
+            myqr.run(
+                words = tmp['str'], 
+                version=tmp['len'], 
+                level='L', 
+                save_dir=tmp['rou'], 
+                picture=tmp['rou_photo'], 
+                colorized=tmp['isCS'], 
+                save_name=tmp['name']
+            )
+            return True
+    except BaseException as t:
+        print(t)
+        return False
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------
+# 应付学校的关于错题读取与写入的函数，随便删
 def readFile(filename):
     tmp = {}
     test = configobj.ConfigObj(filename, encoding='UTF-8')
@@ -18,7 +93,6 @@ def readFile(filename):
     tmp['answer'] = test['data']['dataA']
     tmp['photo'] = test['data']['photo']
     return tmp
-    
 def weitefile(route, name, dataP, answer):
     # (tmp_123, fileName) = os.path.split(dataP)
     # (name_file, suffix) = os.path.splitext(fileName)
@@ -41,14 +115,13 @@ def weitefile(route, name, dataP, answer):
     #                 break
     #             print(data_tmp)
     #             w.write(data_tmp)
-
     tmp = {
         'name' : name, 
         'dataphoto' : dataP, 
         'dataAn' : answer
     }
-    
     test['name']['name'] = tmp['name']
     test['data']['dataA'] = tmp['dataAn']
     test['data']['photo'] = tmp['dataphoto']
     test.write()
+# ------------------------------------------------------------

@@ -1,11 +1,20 @@
-from asyncio import windows_events
-import sys
-from MS_BIOS import execute
-from PySide6 import QtCore, QtWidgets, QtGui
+# -- UTF-8 --
+# date: 2022年4月30日
+# made by: ourcwj
 
-from MS_BIOS.side_ui_file import main_window
-from MS_BIOS.side_ui_file import new
-from MS_BIOS.side_ui_file import pic
+import sys
+
+import win32api
+import win32con
+from PySide6 import QtCore, QtGui, QtWidgets
+
+from MS_BIOS import execute as ex
+from MS_BIOS.side_ui_file import main_window, new, pic
+
+# from asyncio import windows_events
+
+
+
 
 class mainwindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None) -> None:
@@ -27,14 +36,20 @@ class mainwindow(QtWidgets.QMainWindow):
 class qrwindow(QtWidgets.QMainWindow):
     def __init__(self, parent = None) -> None:
         super(qrwindow, self).__init__(parent)
-        ui = pic.Ui_MainWindow()
-        ui.setupUi(self)
+        self.ui = pic.Ui_MainWindow()
+        self.ui.setupUi(self)
 
     @QtCore.Slot()
-    def start_photo(temp):
-        print('111')
-        print(temp)
-
+    def start_photo(self, temp):
+        # print('111')
+        # print(temp)
+        tmp = self.ui.get()
+        print(tmp)
+        if not ex.qrcode(tmp):
+            # win32api.MessageBox(0, "生成错误。请检查您的参数。\n或您的设备不支持", "警告",win32con.MB_ICONWARNING)
+            win32api.MessageBox(0, "生成错误。请检查您的参数。\n或您的设备不支持", "重试",win32con.MB_RETRYCANCEL)
+        else:
+            win32api.MessageBox(0, "生成完成\n请前往您指定的目录查看", "完成",win32con.MB_OK)
 class test(QtWidgets.QMainWindow):
     def __init__(self, parent = None) -> None:
         super(test, self).__init__(parent)
