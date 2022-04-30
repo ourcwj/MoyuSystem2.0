@@ -1,0 +1,12 @@
+def get(self) -> dict:
+        temp = {}
+        temp['str'] = self.lineEdit.text()
+        temp['rou'] = self.lineEdit_3.text()
+        temp['len_if'] = self.checkBox_2.isChecked()
+        if temp["len_if"]:
+            temp['len'] = self.spinBox.value()
+        temp['isPhoto'] = self.checkBox.isChecked()
+        if temp["isPhoto"]:
+            temp['rou_photo'] = self.lineEdit_2.text()
+            temp['isCS'] = self.radioButton.isChecked()
+        return temp
