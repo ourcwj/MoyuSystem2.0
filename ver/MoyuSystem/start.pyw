@@ -10,6 +10,7 @@ import logging
 import os
 import sys
 import time
+from asyncio.log import logger
 
 import MS_BIOS
 from MS_BIOS import GUI_side as GUI
@@ -26,26 +27,18 @@ def is_admin():
 bios = MS_BIOS.BIOS()
 
 def exit(code = 0):
+    logger.info('About to exit, launch code: %d' % (code))
     bios.pid.delete_pidFile()
     sys.exit(code)
 
 def main():
-    
-    if not bios.selfInspection():
-        print('未通过自检,准备初始化...')
-        bios.init()
-        print('已初始化。\n准备进行PID检查')
-    else:
-        print('已通过自检,准备进行PID检查')
 
 
-
-
-    # ------------------------------------------
-    # 这些是用来添加日志的，暂时没有大用，可注释
     logger = logging.getLogger('MS_logging')
     logger.setLevel(level=logging.DEBUG)
-    file = bios.appdataRoute + time.strftime('%Y-%M %H-%M-%S') + '.log'
+    file = bios.appdataRoute + 'log\\' + time.strftime('%Y-%M %H-%M-%S') + '.log'
+    if not os.path.isdir(bios.appdataRoute + 'log\\'):
+        os.makedirs(bios.appdataRoute + 'log\\')
     if not os.path.isfile(file):
         with open(file, 'w') as t:
             t.close()
@@ -59,8 +52,15 @@ def main():
     # logger.addHandler(console)
     logger.info('123')
     logger.debug('123')
-    # ------------------------------------------
 
+
+    if not bios.selfInspection():
+        # print('未通过自检,准备初始化...')
+        logger.info('About to initialize')
+        bios.init()
+        # print('已初始化。\n准备进行PID检查')
+    else:
+        pass
 
 
 
@@ -75,7 +75,8 @@ def main():
 
     print('PID检查通过')
     # GUI.startgui(bios.appdataRoute)  # 已被抛弃的代码，毫无用处！！！ 此代码调用了MS_BIOS的GUI模块。模块可删除（模块内代码已全部注释，取消注释仍然可用）
-    gui = GUI.gui()
+    gui = GUI.gui(bios)
+    gui.startGui()
 
     # print('123')
     exit(code=gui.exec)
@@ -88,3 +89,7 @@ if __name__ == "__main__":
             ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
         else: #in python2.x
             ctypes.windll.shell32.ShellExecuteW(None, u"runas", unicode(sys.executable), unicode(__file__), None, 1)
+
+
+
+    # main()

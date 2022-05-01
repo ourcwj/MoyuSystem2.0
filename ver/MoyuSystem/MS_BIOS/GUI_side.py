@@ -2,6 +2,7 @@
 # date: 2022年4月30日
 # made by: ourcwj
 
+import logging
 import sys
 
 import win32api
@@ -14,10 +15,11 @@ from MS_BIOS.side_ui_file import main_window, new, pic
 # from asyncio import windows_events
 
 
-
+logger = logging.getLogger('MS_logging')
 
 class mainwindow(QtWidgets.QMainWindow):
-    def __init__(self, parent=None) -> None:
+    def __init__(self, object, parent=None) -> None:
+        self.object = object
         super(mainwindow, self).__init__(parent)
         ui = main_window.Ui_MainWindow()
         ui.setupUi(self)
@@ -29,12 +31,13 @@ class mainwindow(QtWidgets.QMainWindow):
 
     @QtCore.Slot()
     def qrcode(self, temp011111111111111 = None):
-        self.pic = qrwindow()
+        self.pic = qrwindow(self.object)
         self.pic.show()
 
 
 class qrwindow(QtWidgets.QMainWindow):
-    def __init__(self, parent = None) -> None:
+    def __init__(self, object, parent = None) -> None:
+        self.object = object
         super(qrwindow, self).__init__(parent)
         self.ui = pic.Ui_MainWindow()
         self.ui.setupUi(self)
@@ -45,7 +48,7 @@ class qrwindow(QtWidgets.QMainWindow):
         # print(temp)
         tmp = self.ui.get()
         print(tmp)
-        if not ex.qrcode(tmp):
+        if not ex.qrcode(di=tmp, object=self.object):
             # win32api.MessageBox(0, "生成错误。请检查您的参数。\n或您的设备不支持", "警告",win32con.MB_ICONWARNING)
             win32api.MessageBox(0, "生成错误。请检查您的参数。\n或您的设备不支持", "重试",win32con.MB_RETRYCANCEL)
         else:
@@ -57,9 +60,11 @@ class test(QtWidgets.QMainWindow):
         ui.setupUi(self)
 
 class gui:
-    def __init__(self) -> None:
-        app = QtWidgets.QApplication([])
-        window = mainwindow()
-        window.show()
-    
-        self.exec = app.exec()
+    def __init__(self, object) -> None:
+        self.app = QtWidgets.QApplication([])
+        self.window = mainwindow(object=object)
+        
+
+    def startGui(self):
+        self.window.show()
+        self.exec = self.app.exec()

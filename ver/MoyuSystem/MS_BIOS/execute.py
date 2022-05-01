@@ -2,16 +2,19 @@
 # date: 2022年4月24日
 # made by: ourcwj
 
+import logging
 import os
 import sys
 import time
-from MyQR import myqr
+
 import configobj
+from MyQR import myqr
 
-import MS_BIOS as BIOS
+from MS_BIOS import error
 
+logger = logging.getLogger('MS_logging')
 
-def qrcode(di):
+def qrcode(di, object) -> bool:
     tmp = {}
     tmp['name'] = time.strftime('%Y-%M %H-%M-%S') + '.png'
     tmp['str'] = di['str']
@@ -60,7 +63,8 @@ def qrcode(di):
             )
             return True
     except BaseException as t:
-        print(t)
+        logger.error(str(t))
+        error.newError(object.appdataRoute, text=t)
         return False
 
 
