@@ -82,14 +82,14 @@ def main():
     exit(code=gui.exec)
     
 if __name__ == "__main__":
-    # if is_admin():
-    #     main()
-    # else:
-    #     if sys.version_info[0] == 3:
-    #         ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
-    #     else: #in python2.x
-    #         ctypes.windll.shell32.ShellExecuteW(None, u"runas", unicode(sys.executable), unicode(__file__), None, 1)
+    if is_admin():
+        main()
+    else:
+        if sys.version_info[0] == 3:
+            ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
+        else: #in python2.x
+            ctypes.windll.shell32.ShellExecuteW(None, u"runas", unicode(sys.executable), unicode(__file__), None, 1)
 
 
 
-    main()
+    # main()
