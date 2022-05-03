@@ -6,45 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>509</width>
-    <height>224</height>
+    <width>803</width>
+    <height>516</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>509</width>
-    <height>224</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>9999</width>
-    <height>99999</height>
-   </size>
-  </property>
   <property name="windowTitle">
-   <string>MoyuSystem</string>
+   <string>帮助</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="1">
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <pointsize>22</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>欢迎使用MoyuSystem</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
-     </layout>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -53,68 +32,68 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>509</width>
+     <width>803</width>
      <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>&amp;功能</string>
+     <string>&amp;点我</string>
     </property>
-    <addaction name="photo"/>
-    <addaction name="ooo"/>
+    <addaction name="action_ip"/>
+    <addaction name="action_help"/>
    </widget>
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="photo">
+  <action name="action_ip">
    <property name="text">
-    <string>&amp;生成二维码</string>
+    <string>&amp;ip地址查询</string>
    </property>
   </action>
-  <action name="ooo">
+  <action name="action_help">
    <property name="text">
-    <string>&amp;本地解析管理器</string>
+    <string>&amp;帮助信息</string>
    </property>
   </action>
  </widget>
  <resources/>
  <connections>
   <connection>
-   <sender>photo</sender>
+   <sender>action_ip</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>qrcode()</slot>
+   <slot>ip()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>277</x>
-     <y>122</y>
+     <x>401</x>
+     <y>257</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>ooo</sender>
+   <sender>action_help</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>AnalysisManagement()</slot>
+   <slot>help_123()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>254</x>
-     <y>111</y>
+     <x>401</x>
+     <y>257</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
-  <slot>qrcode()</slot>
-  <slot>AnalysisManagement()</slot>
+  <slot>help_123()</slot>
+  <slot>ip()</slot>
  </slots>
 </ui>

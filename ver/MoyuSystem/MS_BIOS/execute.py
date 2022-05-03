@@ -6,6 +6,7 @@ import logging
 import os
 import sys
 import time
+from shlex import split
 
 import configobj
 from MyQR import myqr
@@ -67,11 +68,40 @@ def qrcode(di, object) -> bool:
         error.newError(object.appdataRoute, text=t)
         return False
 
+class host:
+    def __init__(self) -> None:
+        self.hos_list = []
+        self.hos = {}
+        self.path = 'C:\\Windows\\System32\\drivers\\etc\\hosts'
+        self.read()
 
+    def read(self):
+        self.tmp = 'hlnsieeeeeeeermrjmed148543486s1b4rt3s4b798169783419783466^&*^(*@&^#*&@^($*$@#'
+        self.hos_list = []
+        self.hos = {}
+        with open(self.path, mode='r', encoding='UTF-8')as t:
+            for lian in t:
+                if not (lian[0] == '#' or lian[0] == '' or lian[0] == '\n' or lian[0] == '﻿'):
+                    # print(lian)
+                    tmp = split(lian)
+                    # print(tmp)
+                    self.hos_list.append(tmp[1])
+                    self.hos[tmp[1]] = tmp[0]
+                    # print('hos_list', self.hos_list)
+                    # print('hos', self.hos)
 
+    def wi(self):
+        tmp = ''
+        with open(self.path, mode='w', encoding='UTF-8')as t:
+            for i in self.hos_list:
+                if not i == self.tmp:
+                    tmp = tmp + '\n' + self.hos[i] + '    ' + i
+            t.write(tmp)
 
-
-
+    def del_r(self, ob):
+        self.tmp = ob
+        self.wi()
+        self.tmp = 'hlnsieeeeeeeermrjmed148543486s1b4rt3s4b798169783419783466^&*^(*@&^#*&@^($*$@#'
 
 
 
