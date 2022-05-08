@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>741</width>
+    <height>461</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>关于</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>741</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_about">
+    <property name="title">
+     <string>&amp;更多关于</string>
+    </property>
+    <widget class="QMenu" name="menu">
+     <property name="title">
+      <string>&amp;软件开源地址</string>
+     </property>
+     <addaction name="action_Open_with_default_browser"/>
+     <addaction name="action_Open_using_the_software_s_built_in_browser"/>
+    </widget>
+    <addaction name="action_aboutRJ"/>
+    <addaction name="action_Author_s_words"/>
+    <addaction name="action_aboutZZ"/>
+    <addaction name="separator"/>
+    <addaction name="menu"/>
+   </widget>
+   <addaction name="menu_about"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_aboutRJ">
+   <property name="text">
+    <string>&amp;关于本软件</string>
+   </property>
+  </action>
+  <action name="action_Author_s_words">
+   <property name="text">
+    <string>&amp;作者的话</string>
+   </property>
+  </action>
+  <action name="action_Open_with_default_browser">
+   <property name="text">
+    <string>&amp;使用默认浏览器打开</string>
+   </property>
+  </action>
+  <action name="action_Open_using_the_software_s_built_in_browser">
+   <property name="text">
+    <string>&amp;使用软件内置浏览器打开</string>
+   </property>
+  </action>
+  <action name="action_aboutZZ">
+   <property name="text">
+    <string>&amp;关于作者</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>action_aboutRJ</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>adout()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Author_s_words</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>zzdh()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_aboutZZ</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>adoutzz()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Open_with_default_browser</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>bdweb()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Open_using_the_software_s_built_in_browser</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>web()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>370</x>
+     <y>230</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>adout()</slot>
+  <slot>zzdh()</slot>
+  <slot>web()</slot>
+  <slot>bdweb()</slot>
+  <slot>adoutzz()</slot>
+ </slots>
+</ui>

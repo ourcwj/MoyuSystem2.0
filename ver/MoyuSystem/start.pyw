@@ -13,10 +13,12 @@ import time
 from asyncio.log import logger
 
 import MS_BIOS
-from MS_BIOS import GUI_side as GUI
+import GUI
 
 # from MS_BIOS import execute
 # from MS_BIOS import GUI
+
+admin = True
 
 def is_admin():
     try:
@@ -76,20 +78,19 @@ def main():
     print('PID检查通过')
     # GUI.startgui(bios.appdataRoute)  # 已被抛弃的代码，毫无用处！！！ 此代码调用了MS_BIOS的GUI模块。模块可删除（模块内代码已全部注释，取消注释仍然可用）
     gui = GUI.gui(bios)
-    gui.startGui()
+    gui.runGui()
 
     # print('123')
     exit(code=gui.exec)
     
 if __name__ == "__main__":
-    if is_admin():
-        main()
+    if admin:
+        if is_admin():
+            main()
+        else:
+            if sys.version_info[0] == 3:
+                ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
+            else: #in python2.x
+                ctypes.windll.shell32.ShellExecuteW(None, u"runas", unicode(sys.executable), unicode(__file__), None, 1)
     else:
-        if sys.version_info[0] == 3:
-            ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
-        else: #in python2.x
-            ctypes.windll.shell32.ShellExecuteW(None, u"runas", unicode(sys.executable), unicode(__file__), None, 1)
-
-
-
-    # main()
+        main()

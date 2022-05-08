@@ -63,6 +63,7 @@
     </property>
     <addaction name="photo"/>
     <addaction name="ooo"/>
+    <addaction name="action_about"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -75,6 +76,14 @@
   <action name="ooo">
    <property name="text">
     <string>&amp;本地解析管理器</string>
+   </property>
+  </action>
+  <action name="action_about">
+   <property name="text">
+    <string>&amp;关于</string>
+   </property>
+   <property name="toolTip">
+    <string>adout</string>
    </property>
   </action>
  </widget>
@@ -112,9 +121,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_about</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>about()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>254</x>
+     <y>111</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>qrcode()</slot>
   <slot>AnalysisManagement()</slot>
+  <slot>about()</slot>
  </slots>
 </ui>

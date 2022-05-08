@@ -31,6 +31,8 @@ class Ui_MainWindow(object):
         self.photo.setObjectName(u"photo")
         self.ooo = QAction(MainWindow)
         self.ooo.setObjectName(u"ooo")
+        self.action_about = QAction(MainWindow)
+        self.action_about.setObjectName(u"action_about")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout_2 = QVBoxLayout(self.centralwidget)
@@ -63,10 +65,12 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menu.menuAction())
         self.menu.addAction(self.photo)
         self.menu.addAction(self.ooo)
+        self.menu.addAction(self.action_about)
 
         self.retranslateUi(MainWindow)
         self.photo.triggered.connect(MainWindow.qrcode)
         self.ooo.triggered.connect(MainWindow.AnalysisManagement)
+        self.action_about.triggered.connect(MainWindow.about)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -75,6 +79,10 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MoyuSystem", None))
         self.photo.setText(QCoreApplication.translate("MainWindow", u"&\u751f\u6210\u4e8c\u7ef4\u7801", None))
         self.ooo.setText(QCoreApplication.translate("MainWindow", u"&\u672c\u5730\u89e3\u6790\u7ba1\u7406\u5668", None))
+        self.action_about.setText(QCoreApplication.translate("MainWindow", u"&\u5173\u4e8e", None))
+#if QT_CONFIG(tooltip)
+        self.action_about.setToolTip(QCoreApplication.translate("MainWindow", u"adout", None))
+#endif // QT_CONFIG(tooltip)
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u6b22\u8fce\u4f7f\u7528MoyuSystem", None))
         self.menu.setTitle(QCoreApplication.translate("MainWindow", u"&\u529f\u80fd", None))
     # retranslateUi

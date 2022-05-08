@@ -7,14 +7,14 @@ import sys
 
 import win32api
 import win32con
-from PySide6 import QtCore, QtGui, QtWidgets
-
 from MS_BIOS import execute as ex
 from MS_BIOS.side_ui_file import AnalysisManagement, main_window, new, pic
 from MS_BIOS.side_ui_file.help_an import help, help_main, url
+from PySide6 import QtCore, QtGui, QtWidgets
+
+from GUI import adout
 
 # from asyncio import windows_events
-
 
 logger = logging.getLogger('MS_logging')
 
@@ -37,6 +37,11 @@ class mainwindow(QtWidgets.QMainWindow):
         # 生成二维码
         self.pic = qrwindow(self.object)
         self.pic.show()
+
+    @QtCore.Slot()
+    def about(self, temp011111111111111):
+        self.adout = adout.about_mainwindow()
+        self.adout.show()
 
 
 class qrwindow(QtWidgets.QMainWindow):
@@ -155,23 +160,15 @@ class help_an_qwe(QtWidgets.QMainWindow):
     # --------------------
     @QtCore.Slot()
     def help_123(self, temp011111111111111):
-        print('help')
+        # print('help')
         self.qsl.setCurrentIndex(0)
 
     @QtCore.Slot()
     def ip(self, temp011111111111111):
-        print('url')
+        # print('url')
         self.qsl.setCurrentIndex(1)
     # --------------------
 
 
 # --------------------
-class gui:
-    def __init__(self, object) -> None:
-        self.app = QtWidgets.QApplication([])
-        self.window = mainwindow(object=object)
-        
 
-    def startGui(self):
-        self.window.show()
-        self.exec = self.app.exec()
