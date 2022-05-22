@@ -4,7 +4,10 @@
 
 import logging
 import sys
+from operator import imod
 
+import Network_communication as net
+import Network_communication.GUI as comGui
 import win32api
 import win32con
 from MS_BIOS import execute as ex
@@ -42,6 +45,16 @@ class mainwindow(QtWidgets.QMainWindow):
     def about(self, temp011111111111111):
         self.adout = adout.about_mainwindow()
         self.adout.show()
+
+    @QtCore.Slot()
+    def communication(self, temp011111111111111):
+
+        self.com = comGui.main_Window()
+        self.sever = net.client(threadID=3, threadName='the_cliend_thread', window_object=self.com)
+        self.sever.setDaemon(True)
+        self.sever.start()
+        self.com.show()
+        # ex.communication()
 
 
 class qrwindow(QtWidgets.QMainWindow):

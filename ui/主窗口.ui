@@ -64,6 +64,7 @@
     <addaction name="photo"/>
     <addaction name="ooo"/>
     <addaction name="action_about"/>
+    <addaction name="action_communication"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -84,6 +85,11 @@
    </property>
    <property name="toolTip">
     <string>adout</string>
+   </property>
+  </action>
+  <action name="action_communication">
+   <property name="text">
+    <string>&amp;网络通讯</string>
    </property>
   </action>
  </widget>
@@ -137,10 +143,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_communication</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>communication()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>254</x>
+     <y>111</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>qrcode()</slot>
   <slot>AnalysisManagement()</slot>
   <slot>about()</slot>
+  <slot>communication()</slot>
  </slots>
 </ui>

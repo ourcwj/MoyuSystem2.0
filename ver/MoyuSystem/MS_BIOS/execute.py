@@ -1,15 +1,18 @@
 # -- UTF-8 --
 # date: 2022年4月24日
 # made by: ourcwj
-
+import Network_communication.GUI
 import logging
 import os
-import sys
+# import sys
 import time
 from shlex import split
 
-import configobj
+# import configobj
+import Network_communication as Nc
+import Network_communication.GUI
 from MyQR import myqr
+# from ver.MoyuSystem.Network_communication import GUI
 
 from MS_BIOS import error
 
@@ -103,6 +106,12 @@ class host:
         self.wi()
         self.tmp = 'hlnsieeeeeeeermrjmed148543486s1b4rt3s4b798169783419783466^&*^(*@&^#*&@^($*$@#'
 
+def communication() -> None:
+    window = Nc.ProGram(1, 'Communication_thread_1')
+    window.setDaemon(True)
+    test = Network_communication.GUI.main_Window()
+    test.show()
+    # window.start()
 
 
 
@@ -116,46 +125,44 @@ class host:
 
 
 
-
-
-# ------------------------------------------------------------
-# 应付学校的关于错题读取与写入的函数，随便删
-def readFile(filename):
-    tmp = {}
-    test = configobj.ConfigObj(filename, encoding='UTF-8')
-    tmp['name'] = test['name']['name']
-    tmp['answer'] = test['data']['dataA']
-    tmp['photo'] = test['data']['photo']
-    return tmp
-def weitefile(route, name, dataP, answer):
-    # (tmp_123, fileName) = os.path.split(dataP)
-    # (name_file, suffix) = os.path.splitext(fileName)
-    file = route + name + '.msdata'
-    # if not os.path.isfile(file):
-    #     with open(file, mode='w', encoding='UTF-8') as t:
-    #         t.close()
-    # else:
-    #     return False
-    # datapdata = b''
-    test = configobj.ConfigObj(file, encoding='UTF-8')
-    test['name'] = {}
-    test['data'] = {}
-    # photo = route + name + suffix
-    # with open(dataP, mode='rb')as t:
-    #     with open(photo, mode='wb')as w:
-    #         while 1:
-    #             data_tmp = t.read(1024)
-    #             if not len(data_tmp):
-    #                 break
-    #             print(data_tmp)
-    #             w.write(data_tmp)
-    tmp = {
-        'name' : name, 
-        'dataphoto' : dataP, 
-        'dataAn' : answer
-    }
-    test['name']['name'] = tmp['name']
-    test['data']['dataA'] = tmp['dataAn']
-    test['data']['photo'] = tmp['dataphoto']
-    test.write()
-# ------------------------------------------------------------
+# # ------------------------------------------------------------
+# # 应付学校的关于错题读取与写入的函数，随便删
+# def readFile(filename):
+#     tmp = {}
+#     test = configobj.ConfigObj(filename, encoding='UTF-8')
+#     tmp['name'] = test['name']['name']
+#     tmp['answer'] = test['data']['dataA']
+#     tmp['photo'] = test['data']['photo']
+#     return tmp
+# def weitefile(route, name, dataP, answer):
+#     # (tmp_123, fileName) = os.path.split(dataP)
+#     # (name_file, suffix) = os.path.splitext(fileName)
+#     file = route + name + '.msdata'
+#     # if not os.path.isfile(file):
+#     #     with open(file, mode='w', encoding='UTF-8') as t:
+#     #         t.close()
+#     # else:
+#     #     return False
+#     # datapdata = b''
+#     test = configobj.ConfigObj(file, encoding='UTF-8')
+#     test['name'] = {}
+#     test['data'] = {}
+#     # photo = route + name + suffix
+#     # with open(dataP, mode='rb')as t:
+#     #     with open(photo, mode='wb')as w:
+#     #         while 1:
+#     #             data_tmp = t.read(1024)
+#     #             if not len(data_tmp):
+#     #                 break
+#     #             print(data_tmp)
+#     #             w.write(data_tmp)
+#     tmp = {
+#         'name' : name, 
+#         'dataphoto' : dataP, 
+#         'dataAn' : answer
+#     }
+#     test['name']['name'] = tmp['name']
+#     test['data']['dataA'] = tmp['dataAn']
+#     test['data']['photo'] = tmp['dataphoto']
+#     test.write()
+# # ------------------------------------------------------------

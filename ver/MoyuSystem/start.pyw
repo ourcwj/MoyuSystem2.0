@@ -18,7 +18,7 @@ import GUI
 # from MS_BIOS import execute
 # from MS_BIOS import GUI
 
-admin = True
+admin = False
 
 def is_admin():
     try:
@@ -52,8 +52,8 @@ def main():
     # console.setLevel(logging.DEBUG)
     logger.addHandler(handler)
     # logger.addHandler(console)
-    logger.info('123')
-    logger.debug('123')
+    # logger.info('123')
+    # logger.debug('123')
 
 
     if not bios.selfInspection():
